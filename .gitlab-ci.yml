@@ -1,4 +1,4 @@
 test-server:
   image: gradle:4.4.1-jdk8
   stage: test
-  script: "cd wordstat && gradlew test"
+  script: "cd wordstat && ./gradlew test"
