@@ -2,8 +2,6 @@ package com.jjdev.wordstat;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 import java.util.Arrays;
 import java.util.List;
