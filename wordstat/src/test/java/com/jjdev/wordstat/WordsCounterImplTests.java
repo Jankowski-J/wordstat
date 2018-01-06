@@ -1,5 +1,6 @@
 package com.jjdev.wordstat;
 
+import com.jjdev.wordstat.WordsCounterImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
