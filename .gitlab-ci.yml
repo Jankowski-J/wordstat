@@ -1,7 +1,23 @@
-before_script:
-  - sudo chmod +x wordstat/gradlew
+image: java:8-jdk
 
-test-server:
-  image: gradle:4.4.1-jdk8
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+    
+test:
   stage: test
-  script: "sudo wordstat/gradlew test"
+  script:
+    - ./gradlew check
+
+# before_script:
+#  - sudo chmod +x wordstat/gradlew
+#
+#test-server:
+#  image: gradle:4.4.1-jdk8
+#  stage: test
+#  script: "sudo wordstat/gradlew test"
