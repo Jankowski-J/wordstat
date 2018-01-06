@@ -12,3 +12,9 @@
 /wordstat/.gradle/buildOutputCleanup/cache.properties.lock
 /wordstat/gradle/wrapper/gradle-wrapper.jar
 /wordstat/gradle/wrapper/gradle-wrapper.properties
+/wordstat/.gradle/4.0/fileContent/annotation-processors.bin
+/wordstat/.gradle/4.0/fileHashes/resourceHashesCache.bin
+/wordstat/out/production/classes/com/jjdev/wordstat/FileParser.class
+/wordstat/out/production/classes/com/jjdev/wordstat/Main.class
+/wordstat/out/production/classes/com/jjdev/wordstat/WordsCounter.class
+/wordstat/out/production/classes/com/jjdev/wordstat/WordsCounterImpl.class
