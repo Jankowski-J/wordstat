@@ -1,2 +1,14 @@
 /wordstat/build
 /.idea
+/wordstat/.gradle/4.0/fileChanges/last-build.bin
+/wordstat/.gradle/4.0/fileContent/fileContent.lock
+/wordstat/.gradle/4.0/fileHashes/fileHashes.bin
+/wordstat/.gradle/4.0/fileHashes/fileHashes.lock
+/wordstat/.gradle/4.0/taskHistory/fileSnapshots.bin
+/wordstat/.gradle/4.0/taskHistory/taskHistory.bin
+/wordstat/.gradle/4.0/taskHistory/taskHistory.lock
+/wordstat/.gradle/buildOutputCleanup/built.bin
+/wordstat/.gradle/buildOutputCleanup/cache.properties
+/wordstat/.gradle/buildOutputCleanup/cache.properties.lock
+/wordstat/gradle/wrapper/gradle-wrapper.jar
+/wordstat/gradle/wrapper/gradle-wrapper.properties
