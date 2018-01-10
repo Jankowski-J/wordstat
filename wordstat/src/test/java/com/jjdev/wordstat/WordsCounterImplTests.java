@@ -1,12 +1,12 @@
 package com.jjdev.wordstat;
 
+import com.jjdev.model.WordEntry;
 import com.jjdev.wordstat.WordsCounterImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WordsCounterImplTests {
 
@@ -87,5 +87,59 @@ public class WordsCounterImplTests {
 
         Integer actual = map.get("uga");
         Assert.assertEquals((Integer)3, actual);
+    }
+
+    @Test
+    public void getMostCommonWords_forThreeWordsAndTopOne_shouldReturnTheMostFrequent() {
+        Map<String, Integer> words = new HashMap<>();
+        words.put("slowo", 5);
+        words.put("andrzej", 7);
+        words.put("ups", 1);
+
+        List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 1);
+        WordEntry entry = mostCommonWords.get(0);
+
+        Assert.assertEquals(7, (int)entry.getCount());
+    }
+
+    @Test
+    public void getMostCommonWords_forThreeWordsAndTopOne_shouldReturnOnlyOneKey() {
+        Map<String, Integer> words = new HashMap<>();
+        words.put("slowo", 5);
+        words.put("andrzej", 7);
+        words.put("ups", 1);
+
+        List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 1);
+
+        Assert.assertEquals(1, mostCommonWords.size());
+    }
+
+    @Test
+    public void getMostCommonWords_forThreeWordsAndTopFive_shouldReturnAllThreeWords() {
+        Map<String, Integer> words = new HashMap<>();
+        words.put("slowo", 5);
+        words.put("andrzej", 7);
+        words.put("ups", 1);
+
+        List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 5);
+
+        Assert.assertEquals(3, mostCommonWords.size());
+    }
+
+    @Test
+    public void getMostCommonWords_forThreeWordsAndTopFive_shouldReturnCorrectKeys() {
+        Map<String, Integer> words = new HashMap<>();
+        words.put("slowo", 5);
+        words.put("andrzej", 7);
+        words.put("ups", 1);
+
+        List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 5);
+        Set<String> keys = mostCommonWords.stream()
+                .map(x -> x.getWord())
+                .collect(Collectors.toSet());
+
+        Assert.assertTrue(keys.contains("slowo"));
+        Assert.assertTrue(keys.contains("andrzej"));
+        Assert.assertTrue(keys.contains("ups"));
     }
 }
