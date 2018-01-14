@@ -29,7 +29,7 @@ sourceSets {
 
     test {
         java {
-            srcDirs = ["src/test/java/wordstat"]  // Note @Peter's comment below
+            srcDirs = ["src/test/java/wordstat"]
         }
     }
 }
