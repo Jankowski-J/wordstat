@@ -15,15 +15,10 @@ public class FileParserImpl implements FileParser {
 
     @Override
     public List<String> getLinesFromLocalFile(String fileName) throws IOException {
-        try {
-            Path path = Paths.get(fileName);
-            List<String> lines = Files.readAllLines(path);
+        Path path = Paths.get(fileName);
+        List<String> lines = Files.readAllLines(path);
 
-
-            return lines;
-        } catch (Exception e) {
-            throw e;
-        }
+        return lines;
     }
 
     @Override
