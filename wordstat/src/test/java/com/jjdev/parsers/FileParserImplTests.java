@@ -25,7 +25,7 @@ public class FileParserImplTests {
         String path = resource.getPath().substring(1);
 
         try {
-            List<String> linesFromFile = sut.getLinesFromFile(path);
+            List<String> linesFromFile = sut.getLinesFromLocalFile(path);
 
             Assert.assertEquals(1, linesFromFile.size());
         } catch (IOException e) {
@@ -40,7 +40,7 @@ public class FileParserImplTests {
         String path = resource.getPath().substring(1);
 
         try {
-            List<String> linesFromFile = sut.getLinesFromFile(path);
+            List<String> linesFromFile = sut.getLinesFromLocalFile(path);
 
             Assert.assertEquals(7, linesFromFile.size());
         } catch (IOException e) {
