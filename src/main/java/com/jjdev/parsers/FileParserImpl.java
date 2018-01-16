@@ -24,7 +24,9 @@ public class FileParserImpl implements FileParser {
     @Override
     public List<String> sanitizeAndGetWords(List<String> lines) {
         List<String> sanitized = lines.stream()
+                .filter(l -> l.length() > 0)
                 .map(l -> l.replaceAll("[,:;.?!-]", ""))
+                .map(l -> l.replaceAll("\\s{2,}", ""))
                 .map(l -> l.split(" "))
                 .flatMap(l -> Arrays.stream(l))
                 .collect(Collectors.toList());

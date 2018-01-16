@@ -7,6 +7,9 @@ import org.junit.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class WordsCounterImplTests {
 
     private WordsCounterImpl sut;
@@ -21,7 +24,7 @@ public class WordsCounterImplTests {
 
         Map<String, Integer> map = sut.calculateWordsFrequency(words);
 
-        Assert.assertTrue(map.containsKey("derp"));
+        assertTrue(map.containsKey("derp"));
     }
 
     @Test
@@ -31,7 +34,7 @@ public class WordsCounterImplTests {
         Map<String, Integer> map = sut.calculateWordsFrequency(words);
 
         Integer actual = map.get("derp");
-        Assert.assertEquals((Integer)1, actual);
+        assertEquals((Integer) 1, actual);
     }
 
     @Test
@@ -40,9 +43,9 @@ public class WordsCounterImplTests {
 
         Map<String, Integer> map = sut.calculateWordsFrequency(words);
 
-        Assert.assertTrue(map.containsKey("derp"));
-        Assert.assertTrue(map.containsKey("aa"));
-        Assert.assertTrue(map.containsKey("bb"));
+        assertTrue(map.containsKey("derp"));
+        assertTrue(map.containsKey("aa"));
+        assertTrue(map.containsKey("bb"));
     }
 
     @Test
@@ -55,9 +58,9 @@ public class WordsCounterImplTests {
         Integer second = map.get("aa");
         Integer third = map.get("bb");
 
-        Assert.assertEquals((Integer)1, first);
-        Assert.assertEquals((Integer)1, second);
-        Assert.assertEquals((Integer)1, third);
+        assertEquals((Integer) 1, first);
+        assertEquals((Integer) 1, second);
+        assertEquals((Integer) 1, third);
     }
 
     @Test
@@ -66,7 +69,7 @@ public class WordsCounterImplTests {
 
         Map<String, Integer> map = sut.calculateWordsFrequency(words);
 
-        Assert.assertEquals(1, map.keySet().size());
+        assertEquals(1, map.keySet().size());
     }
 
     @Test
@@ -75,7 +78,7 @@ public class WordsCounterImplTests {
 
         Map<String, Integer> map = sut.calculateWordsFrequency(words);
 
-        Assert.assertTrue(map.containsKey("uga"));
+        assertTrue(map.containsKey("uga"));
     }
 
     @Test
@@ -85,7 +88,7 @@ public class WordsCounterImplTests {
         Map<String, Integer> map = sut.calculateWordsFrequency(words);
 
         Integer actual = map.get("uga");
-        Assert.assertEquals((Integer)3, actual);
+        assertEquals((Integer) 3, actual);
     }
 
     @Test
@@ -98,7 +101,7 @@ public class WordsCounterImplTests {
         List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 1);
         WordEntry entry = mostCommonWords.get(0);
 
-        Assert.assertEquals(7, (int)entry.getCount());
+        assertEquals(7, (int) entry.getCount());
     }
 
     @Test
@@ -110,7 +113,7 @@ public class WordsCounterImplTests {
 
         List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 1);
 
-        Assert.assertEquals(1, mostCommonWords.size());
+        assertEquals(1, mostCommonWords.size());
     }
 
     @Test
@@ -122,7 +125,7 @@ public class WordsCounterImplTests {
 
         List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 5);
 
-        Assert.assertEquals(3, mostCommonWords.size());
+        assertEquals(3, mostCommonWords.size());
     }
 
     @Test
@@ -137,8 +140,33 @@ public class WordsCounterImplTests {
                 .map(x -> x.getWord())
                 .collect(Collectors.toSet());
 
-        Assert.assertTrue(keys.contains("slowo"));
-        Assert.assertTrue(keys.contains("andrzej"));
-        Assert.assertTrue(keys.contains("ups"));
+        assertTrue(keys.contains("slowo"));
+        assertTrue(keys.contains("andrzej"));
+        assertTrue(keys.contains("ups"));
+    }
+
+
+    @Test
+    public void getMostCommonWords_forThreeWordsAndTopFive_shouldSortAlphabeticallySameCounts() {
+        Map<String, Integer> words = new HashMap<>();
+        words.put("się", 3);
+        words.put("nie", 2);
+        words.put("na", 2);
+        words.put("błyszczy", 2);
+        words.put("w", 2);
+
+        List<WordEntry> mostCommonWords = sut.getMostCommonWords(words, 5);
+
+        WordEntry first = mostCommonWords.get(0);
+        WordEntry second = mostCommonWords.get(1);
+        WordEntry third = mostCommonWords.get(2);
+        WordEntry fourth = mostCommonWords.get(3);
+        WordEntry fifth = mostCommonWords.get(4);
+
+        assertEquals("się", first.getWord());
+        assertEquals("błyszczy", second.getWord());
+        assertEquals("na", third.getWord());
+        assertEquals("nie", fourth.getWord());
+        assertEquals("w", fifth.getWord());
     }
 }
