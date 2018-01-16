@@ -1,5 +1,6 @@
 package com.jjdev.parsers;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,7 +16,8 @@ public class FileParserImplTests {
     private FileParserImpl sut;
     private ClassLoader loader;
 
-    public FileParserImplTests() {
+    @Before
+    public void setup() {
         sut = new FileParserImpl();
         loader = getClass().getClassLoader();
     }

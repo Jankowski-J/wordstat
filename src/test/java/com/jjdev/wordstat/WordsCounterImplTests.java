@@ -1,7 +1,7 @@
 package com.jjdev.wordstat;
 
 import com.jjdev.model.WordEntry;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -14,7 +14,8 @@ public class WordsCounterImplTests {
 
     private WordsCounterImpl sut;
 
-    public WordsCounterImplTests() {
+    @Before
+    public void setup() {
         sut = new WordsCounterImpl();
     }
 
