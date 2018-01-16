@@ -1,6 +1,5 @@
 package com.jjdev.parsers;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,6 +7,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class FileParserImplTests {
 
@@ -27,10 +28,10 @@ public class FileParserImplTests {
         try {
             List<String> linesFromFile = sut.getLinesFromLocalFile(path);
 
-            Assert.assertEquals(1, linesFromFile.size());
+            assertEquals(1, linesFromFile.size());
         } catch (IOException e) {
             e.printStackTrace();
-            Assert.fail();
+            fail();
         }
     }
 
@@ -42,10 +43,10 @@ public class FileParserImplTests {
         try {
             List<String> linesFromFile = sut.getLinesFromLocalFile(path);
 
-            Assert.assertEquals(7, linesFromFile.size());
+            assertEquals(7, linesFromFile.size());
         } catch (IOException e) {
             e.printStackTrace();
-            Assert.fail();
+            fail();
         }
     }
 
@@ -59,8 +60,8 @@ public class FileParserImplTests {
         boolean anyCommas = result.stream().anyMatch(x -> x.contains(","));
         boolean anySemicolons = result.stream().anyMatch(x -> x.contains(";"));
 
-        Assert.assertFalse(anyCommas);
-        Assert.assertFalse(anySemicolons);
+        assertFalse(anyCommas);
+        assertFalse(anySemicolons);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class FileParserImplTests {
 
         List<String> result = sut.sanitizeAndGetWords(lines);
 
-        Assert.assertEquals(7, result.size());
+        assertEquals(7, result.size());
     }
 
     @Test
@@ -86,7 +87,7 @@ public class FileParserImplTests {
         List<String> result = sut.sanitizeAndGetWords(lines);
 
         for (String word : expected) {
-            Assert.assertTrue(result.contains(word));
+            assertTrue(result.contains(word));
         }
     }
 
@@ -98,6 +99,24 @@ public class FileParserImplTests {
         List<String> result = sut.sanitizeAndGetWords(words);
         String parsedWord = result.get(0);
 
-        Assert.assertEquals("chrupki", parsedWord);
+        assertEquals("chrupki", parsedWord);
+    }
+    
+    @Test
+    public void getLinesFromLocalFileAndSanitizeFromALongerFile_shouldReturnOnlyWords() {
+        URL resource = loader.getResource("wiersz.txt");
+        String path = resource.getPath().substring(1);
+
+        try {
+            List<String> linesFromFile = sut.getLinesFromLocalFile(path);
+            List<String> wordPairs = sut.sanitizeAndGetWords(linesFromFile);
+
+            boolean allWordsValid = wordPairs.stream()
+                    .allMatch(x -> x.length() > 0);
+            assertTrue(allWordsValid);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 }
