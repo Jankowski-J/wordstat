@@ -6,7 +6,7 @@ import com.jjdev.model.WordEntry;
 import com.jjdev.model.WordstatParams;
 import com.jjdev.network.FileDownloader;
 import com.jjdev.parsers.FileParser;
-import com.jjdev.wordstat.WordsCounter;
+import com.jjdev.parsers.WordsCounter;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

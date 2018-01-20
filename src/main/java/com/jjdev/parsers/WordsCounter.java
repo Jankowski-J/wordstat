@@ -1,4 +1,4 @@
-package com.jjdev.wordstat;
+package com.jjdev.parsers;
 
 import com.jjdev.model.WordEntry;
 

@@ -2,22 +2,19 @@ package com.jjdev.wordstat;
 
 import com.jjdev.facades.WordsFrequencyFacade;
 import com.jjdev.model.ParamsParseStatus;
-import com.jjdev.model.WordEntry;
 import com.jjdev.model.WordstatParams;
 import com.jjdev.network.FileDownloaderImpl;
-import com.jjdev.parsers.FileParser;
 import com.jjdev.parsers.FileParserImpl;
+import com.jjdev.parsers.WordsCounterImpl;
 import com.jjdev.parsers.WordstatParamsParserImpl;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Jakub Jankowski
  */
 public class Main {
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]){
 
         WordstatParamsParserImpl paramsParser = new WordstatParamsParserImpl();
 
@@ -33,25 +30,12 @@ public class Main {
         WordsFrequencyFacade facade = new WordsFrequencyFacade(new FileDownloaderImpl(),
                 new FileParserImpl(), new WordsCounterImpl());
 
-        facade.getWordsFrequencies(params);
-    }
-
-    private static List<WordEntry> getMostCommonWords(WordstatParams params, List<String> sanitized) {
-        WordsCounterImpl wordsCounter = new WordsCounterImpl();
-
-        Map<String, Integer> wordsMap = wordsCounter.calculateWordsFrequency(sanitized);
-
-        return wordsCounter.getMostCommonWords(wordsMap, params.getTopWordsCount());
-    }
-
-    private static List<String> getWordsFromFile(WordstatParams params) {
-        FileParser fileParser = new FileParserImpl();
-        List<String> lines = null;
         try {
-            lines = fileParser.getLinesFromLocalFile(params.getPath());
+            facade.getWordsFrequencies(params);
         } catch (IOException e) {
-            System.out.println("Specified file does not exist");
+            System.out.println("There was an error while opening file: " + params.getPath());
+            System.out.println("Please make sure that specified file exists.");
+            e.printStackTrace();
         }
-        return fileParser.sanitizeAndGetWords(lines);
     }
 }
