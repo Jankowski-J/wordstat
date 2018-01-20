@@ -10,11 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileDownloaderImplTests {
-    private FileDownloader sut;
+    private FileDownloaderImpl sut;
 
     @Before
     public void setup() {
-        sut = new FileDownloader();
+        sut = new FileDownloaderImpl();
     }
 
     @Test
