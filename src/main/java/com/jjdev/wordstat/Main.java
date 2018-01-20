@@ -1,8 +1,10 @@
 package com.jjdev.wordstat;
 
+import com.jjdev.facades.WordsFrequencyFacade;
 import com.jjdev.model.ParamsParseStatus;
 import com.jjdev.model.WordEntry;
 import com.jjdev.model.WordstatParams;
+import com.jjdev.network.FileDownloaderImpl;
 import com.jjdev.parsers.FileParser;
 import com.jjdev.parsers.FileParserImpl;
 import com.jjdev.parsers.WordstatParamsParserImpl;
@@ -15,7 +17,7 @@ import java.util.Map;
  * @author Jakub Jankowski
  */
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
 
         WordstatParamsParserImpl paramsParser = new WordstatParamsParserImpl();
 
@@ -28,13 +30,11 @@ public class Main {
             return;
         }
 
-        List<String> sanitized = getWordsFromFile(params);
 
-        List<WordEntry> mostCommonWords = getMostCommonWords(params, sanitized);
+        WordsFrequencyFacade facade = new WordsFrequencyFacade(new FileDownloaderImpl(),
+                new FileParserImpl(), new WordsCounterImpl());
 
-        for (WordEntry entry : mostCommonWords) {
-            System.out.println(entry.getWord() + ": " + entry.getCount().toString());
-        }
+        facade.getWordsFrequencies(params);
     }
 
     private static List<WordEntry> getMostCommonWords(WordstatParams params, List<String> sanitized) {
