@@ -30,7 +30,6 @@ public class Main {
             return;
         }
 
-
         WordsFrequencyFacade facade = new WordsFrequencyFacade(new FileDownloaderImpl(),
                 new FileParserImpl(), new WordsCounterImpl());
 

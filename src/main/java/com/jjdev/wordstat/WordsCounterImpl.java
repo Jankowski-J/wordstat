@@ -30,7 +30,7 @@ public class WordsCounterImpl implements WordsCounter {
                 .limit(n)
                 .collect(Collectors.toList());
 
-        return collected;        
+        return collected;
     }
 }
 

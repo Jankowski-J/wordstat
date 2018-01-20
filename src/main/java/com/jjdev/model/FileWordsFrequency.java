@@ -4,6 +4,12 @@ import java.util.List;
 
 public class FileWordsFrequency {
     String fileName;
+    List<WordEntry> wordEntries;
+
+    public FileWordsFrequency(String fileName, List<WordEntry> wordEntries) {
+        this.fileName = fileName;
+        this.wordEntries = wordEntries;
+    }
 
     public String getFileName() {
         return fileName;
@@ -11,13 +17,5 @@ public class FileWordsFrequency {
 
     public List<WordEntry> getWordEntries() {
         return wordEntries;
-    }
-
-
-    List<WordEntry> wordEntries;
-
-    public FileWordsFrequency(String fileName, List<WordEntry> wordEntries) {
-        this.fileName = fileName;
-        this.wordEntries = wordEntries;
     }
 }

@@ -15,7 +15,7 @@ public class FileDownloaderImpl implements FileDownloader {
         String outputPath = GetDestinationPath(webPath, timeStamp);
         URL website = new URL(webPath);
 
-        try (ReadableByteChannel rbc = Channels.newChannel(website.openStream())){
+        try (ReadableByteChannel rbc = Channels.newChannel(website.openStream())) {
 
             FileOutputStream fos = new FileOutputStream(outputPath);
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
