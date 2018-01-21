@@ -8,9 +8,9 @@ public class WordEntryComparator implements Comparator<WordEntry> {
 
     @Override
     public int compare(WordEntry o1, WordEntry o2) {
-        int difference =  -(o1.getCount() - o2.getCount());
+        int difference = -(o1.getCount() - o2.getCount());
 
-        if(difference == 0) {
+        if (difference == 0) {
             difference = o1.getWord().compareTo(o2.getWord());
         }
 

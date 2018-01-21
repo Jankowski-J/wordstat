@@ -7,7 +7,7 @@ public class WordstatParamsParserImpl implements WordstatParamsParser {
 
     @Override
     public WordstatParams parseParams(String[] args) {
-        if(args.length < 2) {
+        if (args.length < 2) {
             return WordstatParams.invalid(ParamsParseStatus.NotEnoughArgsProvided);
         }
 
@@ -16,17 +16,17 @@ public class WordstatParamsParserImpl implements WordstatParamsParser {
         int topWords;
         String path;
 
-        if(isNumeric(firstArg)){
+        if (isNumeric(firstArg)) {
             topWords = Integer.parseInt(firstArg);
             path = secondArg;
-        } else if(isNumeric(secondArg)) {
+        } else if (isNumeric(secondArg)) {
             topWords = Integer.parseInt(secondArg);
             path = firstArg;
         } else {
             return WordstatParams.invalid(ParamsParseStatus.InvalidArgsProvided);
         }
 
-        if(isNumeric(path)) {
+        if (isNumeric(path)) {
             return WordstatParams.invalid(ParamsParseStatus.InvalidArgsProvided);
         }
 

@@ -1,4 +1,4 @@
-package com.jjdev.wordstat;
+package com.jjdev.parsers;
 
 import com.jjdev.model.WordEntry;
 
@@ -7,5 +7,6 @@ import java.util.Map;
 
 public interface WordsCounter {
     Map<String, Integer> calculateWordsFrequency(List<String> words);
+
     List<WordEntry> getMostCommonWords(Map<String, Integer> baseMap, int n);
 }

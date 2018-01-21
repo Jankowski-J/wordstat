@@ -1,4 +1,4 @@
-package com.jjdev.wordstat;
+package com.jjdev.parsers;
 
 import com.jjdev.comparators.WordEntryComparator;
 import com.jjdev.model.WordEntry;
@@ -30,7 +30,7 @@ public class WordsCounterImpl implements WordsCounter {
                 .limit(n)
                 .collect(Collectors.toList());
 
-        return collected;        
+        return collected;
     }
 }
 
