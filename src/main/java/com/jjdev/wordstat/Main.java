@@ -5,6 +5,7 @@ import com.jjdev.model.ParamsParseStatus;
 import com.jjdev.model.WordstatParams;
 import com.jjdev.network.FileDownloaderImpl;
 import com.jjdev.parsers.FileParserImpl;
+import com.jjdev.parsers.FilePathParserImpl;
 import com.jjdev.parsers.WordsCounterImpl;
 import com.jjdev.parsers.WordstatParamsParserImpl;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
  * @author Jakub Jankowski
  */
 public class Main {
-    public static void main(String args[]){
+    public static void main(String args[]) {
 
         WordstatParamsParserImpl paramsParser = new WordstatParamsParserImpl();
 
@@ -27,8 +28,8 @@ public class Main {
             return;
         }
 
-        WordsFrequencyFacade facade = new WordsFrequencyFacade(new FileDownloaderImpl(),
-                new FileParserImpl(), new WordsCounterImpl());
+        WordsFrequencyFacade facade = new WordsFrequencyFacade(new FileParserImpl(), new WordsCounterImpl(),
+                new FilePathParserImpl(new FileDownloaderImpl()));
 
         try {
             facade.getWordsFrequencies(params);

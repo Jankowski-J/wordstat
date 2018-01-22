@@ -6,36 +6,32 @@ import com.jjdev.model.WordEntry;
 import com.jjdev.model.WordstatParams;
 import com.jjdev.network.FileDownloader;
 import com.jjdev.parsers.FileParser;
+import com.jjdev.parsers.FilePathParser;
 import com.jjdev.parsers.WordsCounter;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WordsFrequencyFacade {
 
-    private FileDownloader fileDownloader;
     private FileParser fileParser;
     private WordsCounter wordsCounter;
+    private FilePathParser filePathParser;
 
-    public WordsFrequencyFacade(FileDownloader downloader, FileParser parser,
-                                WordsCounter counter) {
-        fileDownloader = downloader;
+    public WordsFrequencyFacade(FileParser parser,
+                                WordsCounter counter, FilePathParser pathParser) {
         fileParser = parser;
         wordsCounter = counter;
+        filePathParser = pathParser;
     }
 
     public List<FileWordsFrequency> getWordsFrequencies(WordstatParams params) throws IOException {
         String rawPath = params.getPath();
 
-        boolean isNetworkResource = rawPath.startsWith("http");
-        List<String> fileNames = getFileNamesToProcess(rawPath, isNetworkResource);
+        List<String> fileNames = filePathParser.getFileNamesToProcess(rawPath);
 
         List<FileWordsFrequency> result;
         result = fileNames.stream()
@@ -59,28 +55,6 @@ public class WordsFrequencyFacade {
             }
             System.out.println();
         }
-    }
-
-    private List<String> getFileNamesToProcess(String rawPath, boolean isNetworkResource) throws IOException {
-        List<String> fileNames = new ArrayList<>();
-
-        if (isNetworkResource) {
-            try {
-                String fileName = fileDownloader.downloadFile(rawPath);
-                fileNames.add(fileName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Path path = Paths.get(rawPath);
-            boolean doesFileExist = Files.exists(path);
-
-            if (!doesFileExist) {
-                throw new IOException();
-            }
-            fileNames.add(rawPath);
-        }
-        return fileNames;
     }
 
     private FileWordsFrequency getMostCommonWords(WordstatParams params, FileNameWithData<Map<String, Integer>> x) {
