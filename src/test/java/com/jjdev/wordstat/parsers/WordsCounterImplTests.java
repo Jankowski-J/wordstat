@@ -146,7 +146,6 @@ public class WordsCounterImplTests {
         assertTrue(keys.contains("ups"));
     }
 
-
     @Test
     public void getMostCommonWords_forThreeWordsAndTopFive_shouldSortAlphabeticallySameCounts() {
         Map<String, Integer> words = new HashMap<>();

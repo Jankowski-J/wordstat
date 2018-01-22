@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class FilePathParserImplTests {
 
@@ -35,6 +36,7 @@ public class FilePathParserImplTests {
 
         } catch (IOException e) {
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -49,6 +51,7 @@ public class FilePathParserImplTests {
 
         } catch (IOException e) {
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -62,6 +65,7 @@ public class FilePathParserImplTests {
             assertEquals(5, fileNamesToProcess.size());
         } catch (IOException e) {
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -85,6 +89,7 @@ public class FilePathParserImplTests {
             assertTrue(fifth.endsWith("file5.txt"));
         } catch (IOException e) {
             e.printStackTrace();
+            fail();
         }
     }
 }
