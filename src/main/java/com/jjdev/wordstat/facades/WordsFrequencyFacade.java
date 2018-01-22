@@ -1,13 +1,12 @@
-package com.jjdev.facades;
+package com.jjdev.wordstat.facades;
 
-import com.jjdev.model.FileNameWithData;
-import com.jjdev.model.FileWordsFrequency;
-import com.jjdev.model.WordEntry;
-import com.jjdev.model.WordstatParams;
-import com.jjdev.network.FileDownloader;
-import com.jjdev.parsers.FileParser;
-import com.jjdev.parsers.FilePathParser;
-import com.jjdev.parsers.WordsCounter;
+import com.jjdev.wordstat.model.FileNameWithData;
+import com.jjdev.wordstat.model.FileWordsFrequency;
+import com.jjdev.wordstat.model.WordEntry;
+import com.jjdev.wordstat.model.WordstatParams;
+import com.jjdev.wordstat.parsers.FileParser;
+import com.jjdev.wordstat.parsers.FilePathParser;
+import com.jjdev.wordstat.parsers.WordsCounter;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

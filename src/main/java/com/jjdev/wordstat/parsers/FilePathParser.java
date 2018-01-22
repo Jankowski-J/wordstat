@@ -1,4 +1,4 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jjdev.model;
+package com.jjdev.wordstat.model;
 
 import java.util.List;
 

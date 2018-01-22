@@ -1,6 +1,6 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.network.FileDownloader;
+import com.jjdev.wordstat.network.FileDownloader;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,7 +1,7 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.model.ParamsParseStatus;
-import com.jjdev.model.WordstatParams;
+import com.jjdev.wordstat.model.ParamsParseStatus;
+import com.jjdev.wordstat.model.WordstatParams;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

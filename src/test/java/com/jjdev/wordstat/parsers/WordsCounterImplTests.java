@@ -1,7 +1,6 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.model.WordEntry;
-import com.jjdev.parsers.WordsCounterImpl;
+import com.jjdev.wordstat.model.WordEntry;
 import org.junit.Before;
 import org.junit.Test;
 

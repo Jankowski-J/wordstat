@@ -1,7 +1,7 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.comparators.WordEntryComparator;
-import com.jjdev.model.WordEntry;
+import com.jjdev.wordstat.comparators.WordEntryComparator;
+import com.jjdev.wordstat.model.WordEntry;
 
 import java.util.List;
 import java.util.Map;

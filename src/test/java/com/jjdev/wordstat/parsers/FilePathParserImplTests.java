@@ -1,11 +1,9 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.network.FileDownloader;
-import org.junit.Assert;
+import com.jjdev.wordstat.FileDownloaderMock;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -20,7 +18,7 @@ public class FilePathParserImplTests {
 
     @Before
     public void setup() {
-        sut = new FilePathParserImpl(new MockDownloader());
+        sut = new FilePathParserImpl(new FileDownloaderMock());
         loader = getClass().getClassLoader();
     }
 
@@ -88,13 +86,5 @@ public class FilePathParserImplTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-}
-
-class MockDownloader implements FileDownloader {
-
-    @Override
-    public String downloadFile(String webPath) throws IOException {
-        return webPath;
     }
 }
