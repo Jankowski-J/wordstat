@@ -1,6 +1,6 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.model.WordstatParams;
+import com.jjdev.wordstat.model.WordstatParams;
 
 public interface WordstatParamsParser {
     WordstatParams parseParams(String[] args);

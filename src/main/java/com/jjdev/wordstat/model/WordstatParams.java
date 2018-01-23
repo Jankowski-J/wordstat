@@ -1,4 +1,4 @@
-package com.jjdev.model;
+package com.jjdev.wordstat.model;
 
 public class WordstatParams {
 

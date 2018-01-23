@@ -1,6 +1,6 @@
-package com.jjdev.comparators;
+package com.jjdev.wordstat.comparators;
 
-import com.jjdev.model.WordEntry;
+import com.jjdev.wordstat.model.WordEntry;
 
 import java.util.Comparator;
 

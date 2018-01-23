@@ -1,10 +1,12 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.model.ParamsParseStatus;
-import com.jjdev.model.WordstatParams;
+import com.jjdev.wordstat.model.ParamsParseStatus;
+import com.jjdev.wordstat.model.WordstatParams;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class WordstatParamsParserImplTests {
     private WordstatParamsParserImpl sut;
@@ -18,41 +20,41 @@ public class WordstatParamsParserImplTests {
     public void parseParams_forEmptyArray_returnsCorrectStatus() {
         WordstatParams wordstatParams = sut.parseParams(new String[] {});
 
-        Assert.assertEquals(ParamsParseStatus.NotEnoughArgsProvided, wordstatParams.getStatus());
+        assertEquals(ParamsParseStatus.NotEnoughArgsProvided, wordstatParams.getStatus());
     }
 
     @Test
     public void parseParams_forOnlyOneElementInArray_returnsInvalidParams() {
         WordstatParams wordstatParams = sut.parseParams(new String[] {"1"});
 
-        Assert.assertEquals(ParamsParseStatus.NotEnoughArgsProvided, wordstatParams.getStatus());
+        assertEquals(ParamsParseStatus.NotEnoughArgsProvided, wordstatParams.getStatus());
     }
 
     @Test
     public void parseParams_forOnlyNumericElementsInArray_returnsInvalidParams() {
         WordstatParams wordstatParams = sut.parseParams(new String[] {"1", "2"});
 
-        Assert.assertEquals(ParamsParseStatus.InvalidArgsProvided, wordstatParams.getStatus());
+        assertEquals(ParamsParseStatus.InvalidArgsProvided, wordstatParams.getStatus());
     }
 
     @Test
     public void parseParams_forOnlyStringArgsProvided_returnsInvalidParams() {
         WordstatParams wordstatParams = sut.parseParams(new String[] {"aaaa", "bbbbb"});
 
-        Assert.assertEquals(ParamsParseStatus.InvalidArgsProvided, wordstatParams.getStatus());
+        assertEquals(ParamsParseStatus.InvalidArgsProvided, wordstatParams.getStatus());
     }
 
     @Test
     public void parseParams_forValidArguments_returnsValidParams() {
         WordstatParams wordstatParams = sut.parseParams(new String[] {"aaa", "1"});
 
-        Assert.assertEquals(ParamsParseStatus.Success, wordstatParams.getStatus());
+        assertEquals(ParamsParseStatus.Success, wordstatParams.getStatus());
     }
 
     @Test
     public void parseParams_forValidArgumentsAndFlippedOrded_returnsValidParams() {
         WordstatParams wordstatParams = sut.parseParams(new String[] {"1", "aaa"});
 
-        Assert.assertEquals(ParamsParseStatus.Success, wordstatParams.getStatus());
+        assertEquals(ParamsParseStatus.Success, wordstatParams.getStatus());
     }
 }

@@ -1,7 +1,6 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
-import com.jjdev.model.WordEntry;
-import com.jjdev.parsers.WordsCounterImpl;
+import com.jjdev.wordstat.model.WordEntry;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -146,7 +145,6 @@ public class WordsCounterImplTests {
         assertTrue(keys.contains("andrzej"));
         assertTrue(keys.contains("ups"));
     }
-
 
     @Test
     public void getMostCommonWords_forThreeWordsAndTopFive_shouldSortAlphabeticallySameCounts() {

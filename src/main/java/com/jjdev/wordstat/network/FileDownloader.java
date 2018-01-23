@@ -1,4 +1,4 @@
-package com.jjdev.network;
+package com.jjdev.wordstat.network;
 
 import java.io.IOException;
 

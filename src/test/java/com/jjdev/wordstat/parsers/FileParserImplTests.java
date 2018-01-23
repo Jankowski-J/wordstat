@@ -1,4 +1,4 @@
-package com.jjdev.parsers;
+package com.jjdev.wordstat.parsers;
 
 import org.junit.Before;
 import org.junit.Test;

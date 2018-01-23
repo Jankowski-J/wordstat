@@ -1,4 +1,4 @@
-package com.jjdev.network;
+package com.jjdev.wordstat.network;
 
 import org.junit.Assert;
 import org.junit.Before;
