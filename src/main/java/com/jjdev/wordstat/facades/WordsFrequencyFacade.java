@@ -33,7 +33,7 @@ public class WordsFrequencyFacade {
         List<String> fileNames = filePathParser.getFileNamesToProcess(rawPath);
 
         List<FileWordsFrequency> result;
-        result = fileNames.stream()
+        result = fileNames.parallelStream()
                 .map(x -> getLinesFromFile(x))
                 .map(x -> parseLinesFromFile(x))
                 .map(x -> calculateWordsFrequencies(x))
@@ -56,25 +56,26 @@ public class WordsFrequencyFacade {
         }
     }
 
-    private FileWordsFrequency getMostCommonWords(WordstatParams params, FileNameWithData<Map<String, Integer>> x) {
-        List<WordEntry> mostCommonWords = wordsCounter.getMostCommonWords(x.getData(), params.getTopWordsCount());
-        return new FileWordsFrequency(x.getFileName(), mostCommonWords);
+    private FileWordsFrequency getMostCommonWords(WordstatParams params, FileNameWithData<Map<String, Integer>> fileWordMaps) {
+        List<WordEntry> mostCommonWords = wordsCounter.getMostCommonWords(fileWordMaps.getData(), params.getTopWordsCount());
+
+        return new FileWordsFrequency(fileWordMaps.getFileName(), mostCommonWords);
     }
 
-    private FileNameWithData<Map<String, Integer>> calculateWordsFrequencies(FileNameWithData<List<String>> x) {
-        Map<String, Integer> wordMap = wordsCounter.calculateWordsFrequency(x.getData());
-        return new FileNameWithData<>(x.getFileName(), wordMap);
+    private FileNameWithData<Map<String, Integer>> calculateWordsFrequencies(FileNameWithData<List<String>> fileWords) {
+        Map<String, Integer> wordMap = wordsCounter.calculateWordsFrequency(fileWords.getData());
+        return new FileNameWithData<>(fileWords.getFileName(), wordMap);
     }
 
-    private FileNameWithData<List<String>> parseLinesFromFile(FileNameWithData<List<String>> x) {
-        List<String> sanitizationResult = fileParser.sanitizeAndGetWords(x.getData());
-        return new FileNameWithData<>(x.getFileName(), sanitizationResult);
+    private FileNameWithData<List<String>> parseLinesFromFile(FileNameWithData<List<String>> fileLines) {
+        List<String> sanitizationResult = fileParser.sanitizeAndGetWords(fileLines.getData());
+        return new FileNameWithData<>(fileLines.getFileName(), sanitizationResult);
     }
 
-    private FileNameWithData<List<String>> getLinesFromFile(String x) {
+    private FileNameWithData<List<String>> getLinesFromFile(String fileName) {
         try {
-            List<String> parseResult = fileParser.getLinesFromLocalFile(x);
-            return new FileNameWithData<>(x, parseResult);
+            List<String> parseResult = fileParser.getLinesFromLocalFile(fileName);
+            return new FileNameWithData<>(fileName, parseResult);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
